@@ -34,5 +34,37 @@ class AppTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Go Programming Language', response.data)
 
+    def test_contact_get(self):
+        response = self.app.get('/contact')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Contact Us', response.data)
+        self.assertIn(b'<form', response.data)
+
+    def test_contact_get_success(self):
+        response = self.app.get('/contact?success=1')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Thank you', response.data)
+        self.assertNotIn(b'<form', response.data)
+
+    def test_contact_post_valid(self):
+        response = self.app.post('/contact', data={
+            'name': 'Jane Doe',
+            'email': 'jane@example.com',
+            'message': 'Great courses!'
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertIn('/contact', response.headers['Location'])
+        self.assertIn('success', response.headers['Location'])
+
+    def test_contact_post_missing_fields(self):
+        response = self.app.post('/contact', data={
+            'name': 'Jane Doe',
+            'email': '',
+            'message': ''
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'<form', response.data)
+        self.assertIn(b'Something went wrong', response.data)
+
 if __name__ == '__main__':
     unittest.main()
