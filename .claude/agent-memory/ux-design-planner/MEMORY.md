@@ -1,0 +1,1 @@
+- [Course Explainer App Structure](project_app_structure.md) — plain CSS Flask app, no Bootstrap; nav, routes, and CSS conventions for new pages

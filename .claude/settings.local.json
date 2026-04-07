@@ -2,7 +2,24 @@
   "permissions": {
     "allow": [
       "mcp__playwright__browser_take_screenshot",
-      "mcp__playwright__browser_navigate"
+      "mcp__playwright__browser_navigate",
+      "WebFetch(domain:127.0.0.1)",
+      "Bash(curl -s http://127.0.0.1:5000/contact)",
+      "Bash(python -m playwright install chromium)",
+      "Bash(python -m unittest discover -s tests)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5000/)",
+      "Read(//c/Users/spenc/.claude/**)",
+      "Read(//usr/local/**)",
+      "Bash(python -c \"from playwright.sync_api import sync_playwright; print\\('playwright available'\\)\")",
+      "Bash(python -)",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_fill_form",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5000)",
+      "Bash(python -c ':*)",
+      "Bash(node pw_verify_contact.js)",
+      "Bash(node -e \"require\\('playwright'\\)\")",
+      "Bash(venv/Scripts/python pw_verify_contact.py)"
     ]
   }
 }
